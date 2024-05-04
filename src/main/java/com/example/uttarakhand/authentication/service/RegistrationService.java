@@ -1,14 +1,17 @@
-package com.example.uttarakhand.registration;
+package com.example.uttarakhand.authentication.service;
 
 import java.time.LocalDateTime;
+
+import com.example.uttarakhand.authentication.EmailValidator;
+import com.example.uttarakhand.authentication.RegistrationRequest;
 import com.example.uttarakhand.user.User;
 import com.example.uttarakhand.user.UserRole;
 import org.springframework.stereotype.Service;
 import com.example.uttarakhand.user.UserService;
 import com.example.uttarakhand.Email.EmailSender;
 import org.springframework.transaction.annotation.Transactional;
-import com.example.uttarakhand.registration.token.ConfirmationToken;
-import com.example.uttarakhand.registration.token.ConfirmationTokenService;
+import com.example.uttarakhand.authentication.token.ConfirmationToken;
+import com.example.uttarakhand.authentication.token.ConfirmationTokenService;
 
 
 @Service
@@ -28,6 +31,7 @@ public class RegistrationService {
 
 
     public String register(RegistrationRequest request) {
+
         boolean isValidEmail = emailValidator.test(request.getEmail());
 
         if(!isValidEmail) {
@@ -49,9 +53,7 @@ public class RegistrationService {
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
 
-        String onSuccessfully = "User registered successfully";
-
-        return onSuccessfully;
+        return "User registered successfully";
     }
 
     @Transactional

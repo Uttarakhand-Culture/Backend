@@ -1,4 +1,4 @@
-package com.example.uttarakhand.registration.token;
+package com.example.uttarakhand.authentication.token;
 
 import org.springframework.stereotype.Service;
 

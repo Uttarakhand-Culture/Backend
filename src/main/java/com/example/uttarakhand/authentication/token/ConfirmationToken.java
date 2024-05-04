@@ -1,4 +1,4 @@
-package com.example.uttarakhand.registration.token;
+package com.example.uttarakhand.authentication.token;
 
 import com.example.uttarakhand.user.User;
 import jakarta.persistence.*;

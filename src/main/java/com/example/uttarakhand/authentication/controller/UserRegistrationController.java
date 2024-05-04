@@ -1,5 +1,7 @@
-package com.example.uttarakhand.registration;
+package com.example.uttarakhand.authentication.controller;
 
+import com.example.uttarakhand.authentication.RegistrationRequest;
+import com.example.uttarakhand.authentication.service.RegistrationService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,8 +18,9 @@ public class UserRegistrationController {
     @PostMapping
     public String register (@RequestBody RegistrationRequest request){
 
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\n\n\n\n\n\n\n\n");
         System.out.println("Registration request: " + request);
+        System.out.println("\n\n\n\n\n\n\n\n");
 
         if(request.getFirstName().trim().isEmpty() ||
            request.getLastName().trim().isEmpty() ||
@@ -27,10 +30,18 @@ public class UserRegistrationController {
             throw new IllegalStateException("Fields should not be empty");
         }
 
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-
         return registrationService.register(request);
+
     }
+
+
+
+//    public ResponseEntity<Void> addBook(){
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//    }
+
+
+
 
     @GetMapping(path = "confirm")
     public String confirm(@RequestParam("token") String token) {

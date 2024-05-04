@@ -1,7 +1,7 @@
 package com.example.uttarakhand.user;
 
-import com.example.uttarakhand.registration.token.ConfirmationToken;
-import com.example.uttarakhand.registration.token.ConfirmationTokenService;
+import com.example.uttarakhand.authentication.token.ConfirmationToken;
+import com.example.uttarakhand.authentication.token.ConfirmationTokenService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

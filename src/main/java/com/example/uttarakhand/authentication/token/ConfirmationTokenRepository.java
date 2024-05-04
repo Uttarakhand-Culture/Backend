@@ -1,5 +1,4 @@
-package com.example.uttarakhand.registration.token;
-
+package com.example.uttarakhand.authentication.token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

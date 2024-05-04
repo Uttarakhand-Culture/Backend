@@ -1,4 +1,5 @@
-server:
+spring:
+  server:
   error:
     include-message: always
     include-binding-errors: always
@@ -7,17 +8,22 @@ server:
 
   application:
     name: uttarakhand
+
+
+  ## Database Setup
   datasource:
-    url: jdbc:mysql://localhost:3306/registration jdbc:mysql://{ip_address}:{port}/{database_name}
-    username: root
-    password:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://{IP_ADDRESS_OF_DATABASE}:{PORT_NUMBER}/{Database_Name}
+    username: {USERNAME_OF_DATABASE}
+    password: {PASSWORD_OF_DATABASE}
+    driver-class-name: {ADD_DRIVER_CLASS_NAME}  # For Mysql add this com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 
 
+## Email Sender Setup
   mail:
     host: localhost
     port: 1025

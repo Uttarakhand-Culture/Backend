@@ -1,4 +1,4 @@
-package com.example.uttarakhand.registration;
+package com.example.uttarakhand.authentication;
 
 import java.util.Objects;
 
