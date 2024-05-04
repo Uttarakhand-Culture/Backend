@@ -1,8 +1,8 @@
 package com.example.uttarakhand.authentication.controller;
 
+import org.springframework.web.bind.annotation.*;
 import com.example.uttarakhand.authentication.RegistrationRequest;
 import com.example.uttarakhand.authentication.service.RegistrationService;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/v1/registration")
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserRegistrationController {
 
     private final RegistrationService registrationService;
-
     public UserRegistrationController(RegistrationService registrationService) {
         this.registrationService = registrationService;
     }
@@ -22,25 +21,12 @@ public class UserRegistrationController {
         System.out.println("Registration request: " + request);
         System.out.println("\n\n\n\n\n\n\n\n");
 
-        if(request.getFirstName().trim().isEmpty() ||
-           request.getLastName().trim().isEmpty() ||
-           request.getPassword().trim().isEmpty() ||
-           request.getEmail().trim().isEmpty()
-        ){
+        if(request.getFirstName().trim().isEmpty() || request.getLastName().trim().isEmpty() || request.getPassword().trim().isEmpty() || request.getEmail().trim().isEmpty()){
             throw new IllegalStateException("Fields should not be empty");
         }
 
         return registrationService.register(request);
-
     }
-
-
-
-//    public ResponseEntity<Void> addBook(){
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//    }
-
-
 
 
     @GetMapping(path = "confirm")
@@ -48,3 +34,12 @@ public class UserRegistrationController {
         return registrationService.confirmToken(token);
     }
 }
+
+
+/**
+ * For sending http status code
+ *  public ResponseEntity<Void> addBook(){
+ *             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+ *     }
+ * */
+
