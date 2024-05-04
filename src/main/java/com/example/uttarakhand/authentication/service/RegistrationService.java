@@ -1,15 +1,14 @@
 package com.example.uttarakhand.authentication.service;
 
 import java.time.LocalDateTime;
-
-import com.example.uttarakhand.authentication.EmailValidator;
-import com.example.uttarakhand.authentication.RegistrationRequest;
 import com.example.uttarakhand.user.User;
 import com.example.uttarakhand.user.UserRole;
 import org.springframework.stereotype.Service;
 import com.example.uttarakhand.user.UserService;
 import com.example.uttarakhand.Email.EmailSender;
+import com.example.uttarakhand.authentication.EmailValidator;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.uttarakhand.authentication.RegistrationRequest;
 import com.example.uttarakhand.authentication.token.ConfirmationToken;
 import com.example.uttarakhand.authentication.token.ConfirmationTokenService;
 
@@ -21,7 +20,6 @@ public class RegistrationService {
     private EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
-
     public RegistrationService(UserService userService, EmailValidator emailValidator, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
         this.userService = userService;
         this.emailValidator = emailValidator;
@@ -30,13 +28,13 @@ public class RegistrationService {
     }
 
 
+
     public String register(RegistrationRequest request) {
 
         boolean isValidEmail = emailValidator.test(request.getEmail());
-
-        if(!isValidEmail) {
+        if(!isValidEmail)
             throw new IllegalStateException("Email is not valid");
-        }
+
 
         String token = userService.signUpUser(
                 new User(
@@ -47,6 +45,7 @@ public class RegistrationService {
                         UserRole.USER
                 )
         );
+
 
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(
