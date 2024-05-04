@@ -1,9 +1,8 @@
 package com.example.uttarakhand.authentication.token;
 
-import com.example.uttarakhand.user.User;
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
+import com.example.uttarakhand.user.User;
 
 @Entity
 public class ConfirmationToken {
@@ -38,53 +37,48 @@ public class ConfirmationToken {
     private User user;
 
 
-    public Long getTokenId() {
+
+    public Long getTokenId(){
         return tokenId;
     }
-
-    public void setTokenId(Long tokenId) {
-        this.tokenId = tokenId;
-    }
-
     public String getToken() {
         return token;
     }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
     public User getUser() {
         return user;
     }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public LocalDateTime getExpiresAt() {
         return expiresAt;
     }
-
-    public void setExpiresAt(LocalDateTime expiredAt) {
-        this.expiresAt = expiredAt;
-    }
-
     public LocalDateTime getConfirmedAt() {
         return confirmedAt;
     }
 
+
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    public void setTokenId(Long tokenId) {
+        this.tokenId = tokenId;
+    }
+    public void setToken(String token) {
+        this.token = token;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+    public void setExpiresAt(LocalDateTime expiredAt) {
+        this.expiresAt = expiredAt;
+    }
     public void setConfirmedAt(LocalDateTime confirmedAt) {
         this.confirmedAt = confirmedAt;
     }
+
+
 
     public ConfirmationToken() {
     }
