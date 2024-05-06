@@ -33,7 +33,6 @@ public class WebConfiguration {
                           .requestMatchers("/api/v*/registration/**").permitAll()
                           .requestMatchers("/login").permitAll()
                           .requestMatchers("/home").permitAll()
-
 //                        .requestMatchers(HttpMethod.POST,"/register").permitAll()
 //                        .requestMatchers("/home").permitAll()
 //                        .requestMatchers("/register/**").permitAll() // denyAll will deny all. we can use it when we do Maintenance
@@ -44,7 +43,6 @@ public class WebConfiguration {
                 )
                 .csrf((csrf) -> csrf.disable())
                 .httpBasic(withDefaults());
-
 //                .formLogin(withDefaults())
 //                .httpBasic(withDefaults());
         return http.build();
