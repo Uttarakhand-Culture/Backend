@@ -1,13 +1,13 @@
 package com.example.uttarakhand.user;
 
-import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
+import java.util.Objects;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Objects;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 
 @Entity
 public class User implements UserDetails {
