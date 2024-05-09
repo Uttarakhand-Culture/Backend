@@ -1,15 +1,14 @@
 package com.example.uttarakhand.user;
 
-import com.example.uttarakhand.authentication.token.ConfirmationToken;
-import com.example.uttarakhand.authentication.token.ConfirmationTokenService;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 import java.util.UUID;
+import java.time.LocalDateTime;
+import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetails;
+import com.example.uttarakhand.authentication.token.ConfirmationToken;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.example.uttarakhand.authentication.token.ConfirmationTokenService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Service
 public class UserService implements UserDetailsService {
