@@ -39,7 +39,6 @@ public class WebConfiguration {
 //                        .requestMatchers("/user").hasAuthority("user")
 //                        .requestMatchers("/admin").hasAuthority("admin")
                         .anyRequest().denyAll()
-
                 )
                 .csrf((csrf) -> csrf.disable())
                 .httpBasic(withDefaults());
