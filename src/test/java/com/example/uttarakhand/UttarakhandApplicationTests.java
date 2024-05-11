@@ -7,7 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 class UttarakhandApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void test() {
+
+
+		System.out.println("Hello World ");
 	}
 
 }
