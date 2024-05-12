@@ -12,21 +12,26 @@ public class LoginService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
     public LoginService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     public LoginMessage  loginUser(LoginRequest request) {
-        String msg = "";
-        Optional<User> user = userRepository.findByEmail(request.getEmail());
-        if (user != null) {
+        Optional<User> user = userRepository.findByEmail(request.getEmail()); ;
+
+        System.out.println("RETURN FROM DB");
+
+        if (user.isPresent()) {
             String password = request.getPassword();
             String encodedPassword = user.get().getPassword();
+
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
+
             if (isPwdRight) {
+
                 Optional<User> userCheck = userRepository.findOneByEmailAndPassword(request.getEmail(), encodedPassword);
+
                 if (userCheck.isPresent()) {
                     return new LoginMessage("Login Success", true);
                 } else {

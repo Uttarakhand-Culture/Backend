@@ -24,26 +24,19 @@ public class UserRegistrationController {
 //            throw new IllegalStateException("Fields should not be empty");
             return "Fields should not be empty!";
         }
-
         return registrationService.register(request);
     }
-
 
     @GetMapping(path = "confirm")
     public String confirm(@RequestParam("token") String token) {
         return registrationService.confirmToken(token);
     }
 
-
     @GetMapping(path = "home")
     public String confirm() {
         return "This is Home Page";
     }
-
-
 }
-
-
 
 /**
  * For sending http status code

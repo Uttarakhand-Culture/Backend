@@ -28,13 +28,11 @@ public class RegistrationService {
     }
 
 
-
     public String register(RegistrationRequest request) {
 
         boolean isValidEmail = emailValidator.test(request.getEmail());
         if(!isValidEmail)
             throw new IllegalStateException("Email is not valid");
-
 
         String token = userService.signUpUser(
                 new User(
@@ -46,11 +44,10 @@ public class RegistrationService {
                 )
         );
 
-
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
-        emailSender.send(
-                request.getEmail(),
-                buildEmail(request.getFirstName(), link));
+//        emailSender.send(
+//                request.getEmail(),
+//                buildEmail(request.getFirstName(), link));
 
         return "User registered successfully";
     }
