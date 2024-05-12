@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -31,20 +32,30 @@ public class WebConfiguration {
                 authorizeHttpRequests((authorize) -> authorize
                         // make sure it is in order to access the proper Url
                           .requestMatchers("/api/v*/registration/**").permitAll()
-                                .requestMatchers("/signup").permitAll()
-                                .requestMatchers("/login").permitAll()
-
+                          .requestMatchers(HttpMethod.POST,"/signup").permitAll()
+                          .requestMatchers(HttpMethod.POST,"/login").permitAll()
                           .requestMatchers("/home").permitAll()
+                          .requestMatchers("/profile").authenticated()
+                          .requestMatchers("/admin").hasAuthority("ADMIN")
+
 //                        .requestMatchers(HttpMethod.POST,"/register").permitAll()
 //                        .requestMatchers("/home").permitAll()
 //                        .requestMatchers("/register/**").permitAll() // denyAll will deny all. we can use it when we do Maintenance
 //                        .requestMatchers("/user").hasAuthority("user")
 //                        .requestMatchers("/admin").hasAuthority("admin")
-                        .anyRequest().denyAll()
+                        .anyRequest().authenticated()
                 )
                 .csrf((csrf) -> csrf.disable())
-                .httpBasic(withDefaults());
-//                .formLogin(withDefaults())
+                .httpBasic(withDefaults())
+                .formLogin(withDefaults());
+
+//                .formLogin(formLogin -> formLogin.loginPage("/login")
+//                        .loginProcessingUrl("/loginProcessing")
+//                        .defaultSuccessUrl("/defaultSuccess")
+//                        .successForwardUrl("/successForward")
+//                        .failureForwardUrl("/failureForward")
+//                )
+//                .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll());
 //                .httpBasic(withDefaults());
         return http.build();
     }
@@ -52,6 +63,10 @@ public class WebConfiguration {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoauthenticationProvider());
     }
+
+
+
+
 
     @Bean
     public DaoAuthenticationProvider daoauthenticationProvider() {

@@ -20,7 +20,7 @@ public class UserRegistrationController {
         System.out.println("Registration request: " + request);
         System.out.println("\n\n\n\n\n\n\n\n");
 
-        if(request.getFirstName().trim().isEmpty() || request.getLastName().trim().isEmpty() || request.getPassword().trim().isEmpty() || request.getEmail().trim().isEmpty()){
+        if(request.getFirstName().trim().isEmpty() || request.getPassword().trim().isEmpty() || request.getEmail().trim().isEmpty()){
 //            throw new IllegalStateException("Fields should not be empty");
             return "Fields should not be empty!";
         }
@@ -30,11 +30,6 @@ public class UserRegistrationController {
     @GetMapping(path = "confirm")
     public String confirm(@RequestParam("token") String token) {
         return registrationService.confirmToken(token);
-    }
-
-    @GetMapping(path = "home")
-    public String confirm() {
-        return "This is Home Page";
     }
 }
 
