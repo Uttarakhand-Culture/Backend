@@ -15,8 +15,6 @@ import java.util.TimerTask;
 public class    UserLoginController {
 
     private final LoginService loginService;
-
-    private LoginMessage loginMessage;
     public UserLoginController(LoginService loginService) {
         this.loginService = loginService;
     }
@@ -44,15 +42,7 @@ public class    UserLoginController {
             return ResponseEntity.ok(new LoginMessage("Fields should not be empty", false));
         }
 
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-
-            @Override
-            public void run() {
-                 loginMessage = loginService.loginUser(request);
-            }
-        };
-        timer.schedule(task,5000);
+        LoginMessage  loginMessage = loginService.loginUser(request);
 
         return ResponseEntity.ok(loginMessage);
     }
