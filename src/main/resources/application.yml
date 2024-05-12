@@ -12,10 +12,15 @@ spring:
 
   ## Database Setup
   datasource:
-    url: jdbc:mysql://{IP_ADDRESS_OF_DATABASE}:{PORT_NUMBER}/{Database_Name}
-    username: {USERNAME_OF_DATABASE}
-    password: {PASSWORD_OF_DATABASE}
-    driver-class-name: {ADD_DRIVER_CLASS_NAME}  # For Mysql add this com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://{IP_ADDRESS_OF_DATABASE}:{PORT_NUMBER}/{Database_Name}
+#    username: {USERNAME_OF_DATABASE}
+#    password: {PASSWORD_OF_DATABASE}
+#    driver-class-name: {ADD_DRIVER_CLASS_NAME}  # For Mysql add this com.mysql.cj.jdbc.Driver
+#
+    url: jdbc:mysql://localhost:3306/registration
+    username: root
+    password: 8920611534
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:

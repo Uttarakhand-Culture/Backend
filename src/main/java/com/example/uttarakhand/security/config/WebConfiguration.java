@@ -31,7 +31,9 @@ public class WebConfiguration {
                 authorizeHttpRequests((authorize) -> authorize
                         // make sure it is in order to access the proper Url
                           .requestMatchers("/api/v*/registration/**").permitAll()
-                          .requestMatchers("/login").permitAll()
+                                .requestMatchers("/signup").permitAll()
+                                .requestMatchers("/login").permitAll()
+
                           .requestMatchers("/home").permitAll()
 //                        .requestMatchers(HttpMethod.POST,"/register").permitAll()
 //                        .requestMatchers("/home").permitAll()
@@ -58,5 +60,4 @@ public class WebConfiguration {
         provider.setUserDetailsService(userService);
         return provider;
     }
-
 }

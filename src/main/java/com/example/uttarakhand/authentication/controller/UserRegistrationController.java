@@ -5,8 +5,7 @@ import com.example.uttarakhand.authentication.RegistrationRequest;
 import com.example.uttarakhand.authentication.service.RegistrationService;
 
 @RestController
-@RequestMapping(path = "api/v1/registration")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class UserRegistrationController {
 
     private final RegistrationService registrationService;
@@ -14,7 +13,7 @@ public class UserRegistrationController {
         this.registrationService = registrationService;
     }
 
-    @PostMapping
+    @PostMapping(path = "/signup")
     public String register (@RequestBody RegistrationRequest request){
 
         System.out.println("\n\n\n\n\n\n\n\n");
@@ -22,7 +21,8 @@ public class UserRegistrationController {
         System.out.println("\n\n\n\n\n\n\n\n");
 
         if(request.getFirstName().trim().isEmpty() || request.getLastName().trim().isEmpty() || request.getPassword().trim().isEmpty() || request.getEmail().trim().isEmpty()){
-            throw new IllegalStateException("Fields should not be empty");
+//            throw new IllegalStateException("Fields should not be empty");
+            return "Fields should not be empty!";
         }
 
         return registrationService.register(request);
@@ -33,7 +33,16 @@ public class UserRegistrationController {
     public String confirm(@RequestParam("token") String token) {
         return registrationService.confirmToken(token);
     }
+
+
+    @GetMapping(path = "home")
+    public String confirm() {
+        return "This is Home Page";
+    }
+
+
 }
+
 
 
 /**

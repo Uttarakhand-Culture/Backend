@@ -29,15 +29,15 @@ public class UserService implements UserDetailsService {
             throws UsernameNotFoundException {
         return userRepository
                 .findByEmail(username)
-                .orElseThrow( () ->
+                .orElseThrow(() ->
                         new UsernameNotFoundException(
                                 String.format(USER_NOT_FOUND_MSG, username))
                 );
 
     }
 
-    public String signUpUser (User user) {
-        boolean userExists  = userRepository.findByEmail(user.getEmail()).isPresent();
+    public String signUpUser(User user) {
+        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
         if (userExists) {
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
@@ -54,7 +54,7 @@ public class UserService implements UserDetailsService {
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
                 user
-                );
+        );
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         // TODO: SEND EMAIL
         return token;
