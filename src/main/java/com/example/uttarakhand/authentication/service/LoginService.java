@@ -35,9 +35,6 @@ public class LoginService {
                 Optional<User> userCheck = userRepository.findOneByEmailAndPassword(request.getEmail(), encodedPassword);
 
                 if (userCheck.isPresent()) {
-
-
-                    SecurityContextHolder.getContext().setAuthentication();
                     return new LoginMessage("Login Success", true);
                 } else {
                     return new LoginMessage("Login Failed", false);
