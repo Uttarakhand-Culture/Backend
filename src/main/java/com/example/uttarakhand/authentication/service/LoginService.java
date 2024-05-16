@@ -31,9 +31,7 @@ public class LoginService {
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
 
             if (isPwdRight) {
-
                 Optional<User> userCheck = userRepository.findOneByEmailAndPassword(request.getEmail(), encodedPassword);
-
                 if (userCheck.isPresent()) {
                     return new LoginMessage("Login Success", true);
                 } else {
