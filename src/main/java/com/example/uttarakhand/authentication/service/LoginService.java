@@ -20,8 +20,6 @@ public class LoginService {
     public LoginMessage  loginUser(LoginRequest request) {
         Optional<User> user = userRepository.findByEmail(request.getEmail()); ;
 
-        System.out.println("RETURN FROM DB");
-
         if (user.isPresent()) {
             String password = request.getPassword();
             String encodedPassword = user.get().getPassword();
