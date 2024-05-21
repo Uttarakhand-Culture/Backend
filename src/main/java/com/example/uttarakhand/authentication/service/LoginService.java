@@ -19,13 +19,10 @@ public class LoginService {
 
     public LoginMessage  loginUser(LoginRequest request) {
         Optional<User> user = userRepository.findByEmail(request.getEmail()); ;
-
         if (user.isPresent()) {
             String password = request.getPassword();
             String encodedPassword = user.get().getPassword();
-
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
-
             if (isPwdRight) {
                 Optional<User> userCheck = userRepository.findOneByEmailAndPassword(request.getEmail(), encodedPassword);
                 if (userCheck.isPresent()) {
