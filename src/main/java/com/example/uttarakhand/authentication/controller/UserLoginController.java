@@ -19,7 +19,6 @@ public class    UserLoginController {
         this.loginService = loginService;
     }
 
-
 //    @PostMapping("/login")
 //    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
 //        if (request.getEmail().trim().isEmpty() || request.getPassword().trim().isEmpty()) {
@@ -35,15 +34,10 @@ public class    UserLoginController {
 
     @PostMapping(path = "/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest request) {
-
-
-
         if (request.getEmail().trim().isEmpty() || request.getPassword().trim().isEmpty()) {
             return ResponseEntity.ok(new LoginMessage("Fields should not be empty", false));
         }
-
         LoginMessage  loginMessage = loginService.loginUser(request);
-
         return ResponseEntity.ok(loginMessage);
     }
 
