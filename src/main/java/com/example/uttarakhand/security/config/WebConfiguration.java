@@ -64,10 +64,6 @@ public class WebConfiguration {
         auth.authenticationProvider(daoauthenticationProvider());
     }
 
-
-
-
-
     @Bean
     public DaoAuthenticationProvider daoauthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

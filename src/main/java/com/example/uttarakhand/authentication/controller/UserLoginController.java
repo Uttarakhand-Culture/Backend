@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class    UserLoginController {
+public class UserLoginController {
 
     private final LoginService loginService;
     public UserLoginController(LoginService loginService) {
