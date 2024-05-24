@@ -37,7 +37,6 @@ public class ConfirmationToken {
     private User user;
 
 
-
     public Long getTokenId(){
         return tokenId;
     }
@@ -58,7 +57,6 @@ public class ConfirmationToken {
     }
 
 
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -77,7 +75,6 @@ public class ConfirmationToken {
     public void setConfirmedAt(LocalDateTime confirmedAt) {
         this.confirmedAt = confirmedAt;
     }
-
 
 
     public ConfirmationToken() {
