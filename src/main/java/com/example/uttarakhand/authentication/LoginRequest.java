@@ -3,8 +3,10 @@ package com.example.uttarakhand.authentication;
 import java.util.Objects;
 
 public class LoginRequest {
+
     private final String email;
     private final String password;
+
     public LoginRequest(String username, String password) {
         this.email = username;
         this.password = password;
