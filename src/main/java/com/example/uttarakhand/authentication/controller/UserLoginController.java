@@ -7,9 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.uttarakhand.authentication.service.LoginService;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 @RestController
 @CrossOrigin(origins = "*")
 public class UserLoginController {
