@@ -12,7 +12,6 @@ import com.example.uttarakhand.authentication.RegistrationRequest;
 import com.example.uttarakhand.authentication.token.ConfirmationToken;
 import com.example.uttarakhand.authentication.token.ConfirmationTokenService;
 
-
 @Service
 public class RegistrationService {
 
@@ -29,7 +28,6 @@ public class RegistrationService {
 
 
     public String register(RegistrationRequest request) {
-
         boolean isValidEmail = emailValidator.test(request.getEmail());
         if(!isValidEmail)
             throw new IllegalStateException("Email is not valid");
