@@ -76,7 +76,6 @@ public class User implements UserDetails {
     }
 
 
-
     public Long getId() {
         return id;
     }
