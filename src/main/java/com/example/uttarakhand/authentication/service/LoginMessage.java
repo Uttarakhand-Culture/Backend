@@ -1,6 +1,7 @@
 package com.example.uttarakhand.authentication.service;
 
 public class LoginMessage {
+
         String message;
         Boolean status;
         public String getMessage() {
@@ -19,4 +20,5 @@ public class LoginMessage {
             this.message = message;
             this.status = status;
         }
+
 }
