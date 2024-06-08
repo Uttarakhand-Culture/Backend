@@ -20,7 +20,4 @@ public class LoginMessage {
             this.message = message;
             this.status = status;
         }
-
 }
-
-
