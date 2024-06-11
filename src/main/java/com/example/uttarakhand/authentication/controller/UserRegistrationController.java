@@ -39,4 +39,3 @@ public class UserRegistrationController {
  *             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
  *     }
  * */
-
