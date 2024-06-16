@@ -87,3 +87,4 @@ public class ConfirmationToken {
         this.user = user;
     }
 }
+
