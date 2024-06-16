@@ -56,5 +56,4 @@ public class UserLoginController {
         LoginMessage loginMessage = loginService.loginUser(request);
         return ResponseEntity.ok(loginMessage);
     }
-
 }
