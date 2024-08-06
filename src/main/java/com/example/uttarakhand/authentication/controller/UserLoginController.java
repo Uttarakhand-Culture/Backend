@@ -7,8 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.uttarakhand.authentication.service.LoginService;
 
+import javax.naming.Context;
+import java.security.Principal;
+
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin("*")
 public class UserLoginController {
 
     private final LoginService loginService;
@@ -44,8 +47,10 @@ public class UserLoginController {
     }
 
     @GetMapping(path = "/profile")
-    public String profile() {
-        return "This is profile Page";
+    public String profile(Principal principal) {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println(principal.getName());
+        return "This is profile Page"+ principal.getName();
     }
 
     @GetMapping(path = "/admin")

@@ -1,0 +1,43 @@
+spring:
+  server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    whitelabel:
+      enabled: true
+  application:
+    name: uttarakhand
+
+
+  ## Database Setup
+  datasource:
+        url: jdbc:mysql://{IP_ADDRESS_OF_DATABASE}:{PORT_NUMBER}/{Database_Name}
+        username: {USERNAME_OF_DATABASE}
+        password: {PASSWORD_OF_DATABASE}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+  ## Email Sender Setup
+  mail:
+    host: {HOST_URL}
+    port: {PORT_NUMBER}
+    username: {USERNAME}
+    password: {PASSWORD}
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+
+#  I am using the Maildev service for testing with Docker, but you can use any service you prefer.
+#  https://hub.docker.com/r/maildev/maildev

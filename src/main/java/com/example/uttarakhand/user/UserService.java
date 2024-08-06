@@ -41,11 +41,13 @@ public class UserService implements UserDetailsService {
         if (userExists) {
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
-            throw new IllegalArgumentException("User with email " + user.getEmail() + " already exists");
+            return ("User with email " + user.getEmail() + " already exists han bhai");
         }
+
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         userRepository.save(user);
+
         String token = UUID.randomUUID().toString();
 
         // TODO: Send Confirmation Token

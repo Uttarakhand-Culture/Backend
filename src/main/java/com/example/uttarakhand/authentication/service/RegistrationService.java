@@ -2,6 +2,7 @@ package com.example.uttarakhand.authentication.service;
 
 import java.time.LocalDateTime;
 import com.example.uttarakhand.user.User;
+import com.example.uttarakhand.user.UserRepository;
 import com.example.uttarakhand.user.UserRole;
 import org.springframework.stereotype.Service;
 import com.example.uttarakhand.user.UserService;
@@ -19,18 +20,28 @@ public class RegistrationService {
     private EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
-    public RegistrationService(UserService userService, EmailValidator emailValidator, ConfirmationTokenService confirmationTokenService, EmailSender emailSender) {
+    private final UserRepository userRepository;
+
+    public RegistrationService(UserService userService, EmailValidator emailValidator, ConfirmationTokenService confirmationTokenService, EmailSender emailSender, UserRepository userRepository) {
         this.userService = userService;
         this.emailValidator = emailValidator;
         this.confirmationTokenService = confirmationTokenService;
         this.emailSender = emailSender;
+        this.userRepository = userRepository;
     }
-
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
+
         if(!isValidEmail)
-            throw new IllegalStateException("Email is not valid");
+            return ("Email is not valid");
+
+        boolean userExists = userRepository.findByEmail(request.getEmail()).isPresent();
+        if (userExists) {
+            // TODO check of attributes are the same and
+            // TODO if email not confirmed send confirmation email.
+            return ("User with email " + request.getEmail() + " already exists");
+        }
 
         String token = userService.signUpUser(
                 new User(
@@ -42,10 +53,15 @@ public class RegistrationService {
                 )
         );
 
+
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+        System.out.println(link);
+
+//         Enable Email Service
         emailSender.send(
                 request.getEmail(),
-                buildEmail(request.getFirstName(), link));
+                buildEmail(request.getFirstName(), link)
+        );
 
         return "User registered successfully";
     }

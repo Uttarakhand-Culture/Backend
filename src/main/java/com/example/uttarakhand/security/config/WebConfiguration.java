@@ -12,6 +12,8 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @Configuration
@@ -31,9 +33,9 @@ public class WebConfiguration {
         http.
                 authorizeHttpRequests((authorize) -> authorize
                         // make sure it is in order to access the proper Url
-                          .requestMatchers("/api/v*/registration/**").permitAll()
                           .requestMatchers(HttpMethod.POST,"/signup").permitAll()
                           .requestMatchers(HttpMethod.POST,"/login").permitAll()
+                          .requestMatchers("/api/v*/registration/**").permitAll()
                           .requestMatchers("/home").permitAll()
                           .requestMatchers("/profile").authenticated()
                           .requestMatchers("/admin").hasAuthority("ADMIN")
@@ -46,17 +48,7 @@ public class WebConfiguration {
                         .anyRequest().authenticated()
                 )
                 .csrf((csrf) -> csrf.disable())
-                .httpBasic(withDefaults())
-                .formLogin(withDefaults());
-
-//                .formLogin(formLogin -> formLogin.loginPage("/login")
-//                        .loginProcessingUrl("/loginProcessing")
-//                        .defaultSuccessUrl("/defaultSuccess")
-//                        .successForwardUrl("/successForward")
-//                        .failureForwardUrl("/failureForward")
-//                )
-//                .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll());
-//                .httpBasic(withDefaults());
+                .httpBasic(withDefaults());
         return http.build();
     }
 
@@ -71,4 +63,21 @@ public class WebConfiguration {
         provider.setUserDetailsService(userService);
         return provider;
     }
+
+
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**")
+//                        .allowedOrigins("http://localhost:8080")
+//                        .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
+//                        .allowCredentials(true);
+//            }
+//
+//        };
+//    }
+
+
 }
